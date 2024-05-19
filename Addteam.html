@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Team Member</title>
+    <link rel="stylesheet" href="Addteam.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Add Team Member</h1>
+        <table id="teamTable">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Add</th>
+                    <th>Leader/Member</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="email" placeholder="Enter email" oninput="checkProfile(this)"></td>
+                    <td><input type="text" placeholder="Enter role"></td>
+                    <td><button class="add-button" onclick="addRow()">+</button></td>
+                    <td class="radio-group">
+                        <label><input type="radio" name="role1" value="leader"> Leader</label>
+                        <label><input type="radio" name="role1" value="member"> Member</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const existingProfiles = [
+            'balajijanani921@gmail.com',
+            'hari2gmail.com',
+            'sowmiyan@gmail.com',
+            'mujumil2@gmail.com',
+
+        ];
+
+        function checkProfile(input) {
+            const email = input.value;
+            const row = input.parentElement.parentElement;
+            if (existingProfiles.includes(email)) {
+                row.classList.add('tick');
+            } else {
+                row.classList.remove('tick');
+            }
+        }
+
+        function addRow() {
+            const table = document.getElementById("teamTable").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            const emailCell = newRow.insertCell(0);
+            const roleCell = newRow.insertCell(1);
+            const addCell = newRow.insertCell(2);
+            const radioCell = newRow.insertCell(3);
+
+
+            emailCell.innerHTML = '<input type="email" placeholder="Enter email" oninput="checkProfile(this)">';
+            roleCell.innerHTML = '<input type="text" placeholder="Enter role">';
+            addCell.innerHTML = '<button class="add-button" onclick="addRow()">+</button>';
+            radioCell.innerHTML = `
+                <div class="radio-group">
+                    <label><input type="radio" name="role${table.rows.length}" value="leader"> Leader</label>
+                    <label><input type="radio" name="role${table.rows.length}" value="member"> Member</label>
+                </div>`;
+        }
+    </script>
+</body>
+</html>
+
