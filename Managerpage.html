@@ -82,3 +82,88 @@
 </html>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table id="teamTable">
+    <tbody>
+      <tr *ngFor="let row of rows; let i = index" [class.tick]="row.isExisting">
+        <td>
+          <input
+            type="email"
+            placeholder="Enter email"
+            [(ngModel)]="row.email"
+            (input)="checkProfile(row.email, i)"
+          >
+        </td>
+        <td>
+            <input type="text"
+            placeholder="Enter role"
+            [(ngModel)]="row.text"
+            (input)="checkProfile(row.text, i)"
+            >
+        </td>
+        <td>
+          <!-- <input type="text" placeholder="Enter role" [(ngModel)]="row.role"> -->
+        </td>
+        <td>
+          <button class="add-button" (click)="addRow()">+</button>
+        </td>
+        <td>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="role{{i}}" value="leader">
+              Leader
+            </label>
+            <label>
+              <input type="radio" name="role{{i}}" value="member">
+              Member
+            </label>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a routerLink="home"><button>Back to home</button></a>
+  
+
+
